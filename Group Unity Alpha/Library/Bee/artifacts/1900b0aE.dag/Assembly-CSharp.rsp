@@ -366,6 +366,8 @@
 "Assets/Mini Simple Characters Skeleton Demo/Readme/Scripts/Readme.cs"
 "Assets/Scripts/CameraScript.cs"
 "Assets/Scripts/EnemyScript.cs"
+"Assets/Scripts/PlayerScript.cs"
+"Assets/Scripts/PlayerValues.cs"
 "Assets/Scripts/RotateCamera.cs"
 "Assets/Scripts/ZombieCameraLogic.cs"
 "Assets/Supercyan Character Pack Zombie Sample/Scripts/ZombieCharacterControl.cs"

@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-public float speed;
+
 private Rigidbody enemyRb;
 private GameObject player;
+public int health;
+public int attack; 
+public float speed;
 
 void Start() {
 
