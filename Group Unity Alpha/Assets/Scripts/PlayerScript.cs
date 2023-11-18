@@ -2,23 +2,54 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public float rotationSpeed;
 
+    //Animator animator = GetComponent<Animator>();
+    public Transform cam;
+
+    public CharacterController controller;
+    public float speed = 6f;
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
+    
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        movementDirection.Normalize();
+        applyGravity();
 
-        transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
-        
-        if (movementDirection != Vector3.zero)
+        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+        direction.Normalize();
+
+        if (direction.magnitude >= 0.1f)
         {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);            
+            
+            //gets angle player should face
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            //smooths roatation
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            //rotate player in the direction currently moving
+            transform.rotation = Quaternion.Euler(0f, angle, 0);
+            
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            
+            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+
         }
+        
     }
+
+//gravity function
+
+    private void applyGravity()
+    {
+        Vector3 gravityVector = Vector3.zero;
+
+        if(controller.isGrounded == false)
+        {
+            gravityVector += Physics.gravity;
+        }
+        controller.Move(gravityVector * Time.deltaTime);
+    }
+
 }
