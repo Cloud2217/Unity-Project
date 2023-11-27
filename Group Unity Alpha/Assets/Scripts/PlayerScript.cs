@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 6f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    public bool hasPowerup;
+
 
     private enum PlayerState{
         free,
@@ -24,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     void Start(){
         animator = GetComponent<Animator>();
     }
+
+    private void OnTriggerEnter(Collider other) {
+    if (other.CompareTag("Powerup")) {
+    hasPowerup = true;
+    Destroy(other.gameObject); } }
     
     void Update()
     {
