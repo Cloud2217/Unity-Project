@@ -1,0 +1,29 @@
+==UNITY PROJECT CONTRIBUTIONS==
+
+Eric: 50%	Luke: 50%
+
+N.B:
+Adam heather was originally supposed to be a part of this project, however
+he had to drop out at the last minute due to circumstances out of his or our
+control. As such, the work load had to be redistributed and many features that
+we planned to implement werent able to be completed in time, as we were 
+stretched much thinner. Much time was also lost, as we were waiting on Adam to
+implement several key features before we could proceed to work on the tasks we
+had originally delagated amongst ourseleves.
+
+Lukes contributions:
+
+- Player Script
+- Player animation system
+- Weapon implementation
+- Fixing enemy behaviours.
+- Fixing Collisions
+
+
+Erics contributions:
+
+- Player Script
+- Enemy Script
+- Asset sourcing
+- Powerups
+- Camera work
